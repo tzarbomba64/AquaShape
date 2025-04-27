@@ -3,39 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AquaShape Combined</title>
+  <title>AquaShape (SRC Only)</title>
 
-  <!-- Load both CSS files -->
-  <link rel="stylesheet" href="dist/style.css">
+  <!-- Load SRC CSS -->
   <link rel="stylesheet" href="src/style.css">
 </head>
 
 <body>
 
-  <!-- Insert both HTML bodies -->
-  <div id="dist-html"></div>
-  <div id="src-html"></div>
+  <div id="src-content"></div>
 
-  <!-- Load both JS files after content -->
-  <script src="dist/script.js" defer></script>
+  <!-- Load SRC JavaScript -->
   <script src="src/script.js" defer></script>
 
-  <!-- Load and insert HTML files -->
+  <!-- JavaScript to load and insert src/index.html -->
   <script>
-    function loadHTML(url, elementId) {
-      fetch(url)
-        .then(response => response.text())
-        .then(html => {
-          document.getElementById(elementId).innerHTML = html;
-        })
-        .catch(error => console.error('Error loading ' + url + ':', error));
+    async function loadSRC() {
+      const response = await fetch('src/index.html');
+      const text = await response.text();
+
+      // Extract only the <body>...</body> content
+      const bodyMatch = text.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      if (bodyMatch) {
+        document.getElementById('src-content').innerHTML = bodyMatch[1];
+      } else {
+        console.error('No <body> tag found in src/index.html');
+      }
     }
 
-    // Load dist/index.html into #dist-html
-    loadHTML('dist/index.html', 'dist-html');
-
-    // Load src/index.html into #src-html
-    loadHTML('src/index.html', 'src-html');
+    loadSRC();
   </script>
 
 </body>
