@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaShape Combined</title>
+
+  <!-- Load both CSS files -->
+  <link rel="stylesheet" href="dist/style.css">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+
+  <!-- Insert both HTML bodies -->
+  <div id="dist-html"></div>
+  <div id="src-html"></div>
+
+  <!-- Load both JS files after content -->
+  <script src="dist/script.js" defer></script>
+  <script src="src/script.js" defer></script>
+
+  <!-- Load and insert HTML files -->
+  <script>
+    function loadHTML(url, elementId) {
+      fetch(url)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(elementId).innerHTML = html;
+        })
+        .catch(error => console.error('Error loading ' + url + ':', error));
+    }
+
+    // Load dist/index.html into #dist-html
+    loadHTML('dist/index.html', 'dist-html');
+
+    // Load src/index.html into #src-html
+    loadHTML('src/index.html', 'src-html');
+  </script>
+
+</body>
+</html>
