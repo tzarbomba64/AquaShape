@@ -1,7 +1,7 @@
 # AquaShape
 
 Made for modeling.
-AqaShape is an html-based modeling platform, currently in beta 0.0.9-B
+AquaShape is an html-based modeling platform, currently in beta 0.0.9-B
 
 A Pen created on CodePen.
 
