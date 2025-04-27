@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaShape (SRC Only)</title>
+  <!-- Load SRC CSS -->
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div id="src-content"></div>
+  <!-- Load SRC JavaScript -->
+  <script src="src/script.js" defer></script>
+  <!-- JavaScript to load and insert src/index.html -->
+  <script>
+    async function loadSRC() {
+      const response = await fetch('src/index.html');
+      const text = await response.text();
+      document.getElementById('src-content').innerHTML = text;
+    }
+    loadSRC();
+  </script>
+</body>
+</html>
